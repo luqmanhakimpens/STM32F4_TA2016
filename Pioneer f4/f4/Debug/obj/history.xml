@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F407VG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -I..\..\..\workspace\f4 -I..\..\..\workspace\f4\cmsis -I..\..\..\workspace\f4\cmsis_lib\include -I..\..\..\workspace\f4\cmsis_lib -I..\..\..\workspace\f4\cmsis_boot -I..\..\..\workspace">
+      <target file="stm32f4xx_spi.o" lastModified="14e78d8f948">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="14e788ffe4d"/>
+      </target>
+      <target file="stm32f4xx_rcc.o" lastModified="14e78d8f542">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="14e788ffeae"/>
+      </target>
+      <target file="system_stm32f4xx.o" lastModified="14e78d8f790">
+         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="14e788ffe7f"/>
+      </target>
+      <target file="stm32f4xx_i2c.o" lastModified="14e78d8fc15">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_i2c.c" lastModified="14e7890270f"/>
+      </target>
+      <target file="main.o" lastModified="14e78d8f1bb">
+         <source file="..\..\..\main.c" lastModified="14e788b522f"/>
+      </target>
+      <target file="startup_stm32f4xx.o" lastModified="14e78d8ef95">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="14e788ffe63"/>
+      </target>
+   </processor>
+</history>

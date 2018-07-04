@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F407VG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -DHSE_VALUE=8000000 -D__FPU_USED -I..\..\..\..\GG\Source Code -I..\..\..\..\GG\Source Code\f4\cmsis -I..\..\..\..\GG\Source Code\f4 -I..\..\..\..\GG -I..\..\..\..\GG\Source Code\f4\cmsis_lib\include -I..\..\..\..\GG\Source Code\f4\cmsis_lib -I..\..\..\..\GG\Source Code\f4\tm_stm32f4_lcd -I..\..\..\..\GG\Source Code\f4\cmsis_boot">
+      <target file="stm32f4xx_exti.o" lastModified="162a0a47aa9">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="150ffc40cb7"/>
+      </target>
+      <target file="stm32f4xx_gpio.o" lastModified="162a0a476e5">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="150d06a1529"/>
+      </target>
+      <target file="oretoret.o" lastModified="162a0a46fb2">
+         <source file="..\..\oretoret.c" lastModified="154e88e6ddb"/>
+      </target>
+      <target file="peripheral.o" lastModified="162a0a4784a">
+         <source file="..\..\..\peripheral.c" lastModified="1559a8e4128"/>
+      </target>
+      <target file="tm_stm32f4_gpio.o" lastModified="162a0a47b9e">
+         <source file="..\..\..\tm_stm32f4_lcd\tm_stm32f4_gpio.c" lastModified="14e6ca1211a"/>
+      </target>
+      <target file="stm32f4xx_syscfg.o" lastModified="162a0a46ee2">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="1510044d4a7"/>
+      </target>
+      <target file="startup_stm32f4xx.o" lastModified="162a0a470e6">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="15554fa3bfc"/>
+      </target>
+      <target file="stm32f4xx_tim.o" lastModified="162a0a47d04">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="150ece301e7"/>
+      </target>
+      <target file="stm32f4xx_adc.o" lastModified="162a0a475f4">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_adc.c" lastModified="15134feb479"/>
+      </target>
+      <target file="tm_stm32f4_timer_properties.o" lastModified="162a0a47c00">
+         <source file="..\..\..\tm_stm32f4_lcd\tm_stm32f4_timer_properties.c" lastModified="1488d31f2f5"/>
+      </target>
+      <target file="system_stm32f4xx.o" lastModified="162a0a478b0">
+         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="150d07b09a1"/>
+      </target>
+      <target file="misc.o" lastModified="162a0a47b2b">
+         <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="150dadbcb61"/>
+      </target>
+      <target file="stm32f4xx_spi.o" lastModified="162a0a479bd">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="151977d8b3c"/>
+      </target>
+      <target file="stm32f4xx_rcc.o" lastModified="162a0a47545">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="150d06a7090"/>
+      </target>
+      <target file="syscalls.o" lastModified="162a0a47931">
+         <source file="..\..\..\syscalls\syscalls.c" lastModified="150d06b855a"/>
+      </target>
+      <target file="stm32f4xx_i2c.o" lastModified="162a0a47a4f">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_i2c.c" lastModified="151774ae45e"/>
+      </target>
+      <target file="tm_stm32f4_delay.o" lastModified="162a0a47674">
+         <source file="..\..\..\tm_stm32f4_lcd\tm_stm32f4_delay.c" lastModified="1513292458a"/>
+      </target>
+      <target file="tm_stm32f4_hd44780.o" lastModified="162a0a46f7d">
+         <source file="..\..\..\tm_stm32f4_lcd\tm_stm32f4_hd44780.c" lastModified="151341e058e"/>
+      </target>
+      <target file="my_delay.o" lastModified="162a0a470a6">
+         <source file="..\..\..\my_delay.c" lastModified="15134715293"/>
+      </target>
+      <target file="main.o" lastModified="162a0a474b8">
+         <source file="..\..\..\main.c" lastModified="15672ce9798"/>
+      </target>
+      <target file="stm32f4xx_usart.o" lastModified="162a0a4704b">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="150dad57e08"/>
+      </target>
+   </processor>
+</history>

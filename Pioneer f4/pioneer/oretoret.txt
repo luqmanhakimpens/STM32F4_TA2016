@@ -1,0 +1,297 @@
+
+//percobaan PA1
+if(button0)
+    	{
+    		while(button0);
+    		panjang=30 * percobaan;
+    		get_odo();
+			while(odo_x<=panjang)
+			{
+				motor(MA,fwd,x);
+				motor(MC,fwd,x);
+				get_odo();
+				sprintf(lcd_buff,"%.2f   %.2f  ",odo_x,odo_y);
+				lcd_xy(0,1);
+				lcd_write(lcd_buff);
+			}
+			motor(MA,bwd,500);
+			motor(MC,bwd,500);
+			delay_ms(50);
+			motor(MA,stop,0);
+			motor(MC,stop,0);
+			while(odo_y<=panjang)
+			{
+				motor(MB,fwd,x);
+				motor(MD,fwd,x);
+				get_odo();
+				sprintf(lcd_buff,"%.2f   %.2f  ",odo_x,odo_y);
+				lcd_xy(0,1);
+				lcd_write(lcd_buff);
+			}
+			motor(MB,stop,500);
+			motor(MD,stop,500);
+			delay_ms(500);
+			motor(MB,stop,0);
+			motor(MD,stop,0);
+			reset_odo();
+    	}
+    	if(button1)
+    	{
+    		while(button1);
+    		panjang=30*percobaan;
+    		get_odo();
+			while(odo_y<=panjang)
+			{
+				motor(MA,fwd,x);
+				motor(MC,fwd,x);
+				motor(MB,fwd,x);
+				motor(MD,fwd,x);
+				get_odo();
+				sprintf(lcd_buff,"%.2f   %.2f  ",odo_x,odo_y);
+				lcd_xy(0,1);
+				lcd_write(lcd_buff);
+
+			}
+
+			motor(MA,bwd,500);
+			motor(MC,bwd,500);
+			motor(MB,bwd,500);
+			motor(MD,bwd,500);
+			delay_ms(50);
+			motor(MA,stop,0);
+			motor(MC,stop,0);
+			motor(MB,stop,0);
+			motor(MD,stop,0);
+			delay_ms(500);
+			reset_odo();
+    	}
+
+    	if(button2)
+    	{
+    		while(button2);
+
+    		percobaan++;
+    		if(percobaan>10)
+    			percobaan=1;
+
+    		/*//uji mkanik
+    		motor(MB,fwd,700);
+			motor(MD,fwd,700);
+			delay_ms(5000);
+			motor(MB,stop,700);
+			motor(MD,stop,700);*/
+    	}
+
+    	if(button3)
+    	{
+    		while(button3);
+    		x+=50;
+    		if(x>1000)x=0;
+
+    		/*// uji mekanik
+    		motor(MA,fwd,700);
+    		motor(MC,fwd,700);
+    		delay_ms(5000);
+    		motor(MA,stop,700);
+    		motor(MC,stop,700);*/
+    	}
+
+    	/*sprintf(lcd_buff,"test=%4d",read_bat());
+		lcd_xy(6,0);
+		lcd_write(lcd_buff);*/
+    	delay_ms(50);
+
+    	panjang=30 * percobaan;
+    	get_odo();
+    	sprintf(lcd_buff,"%.1f %4d coba%3d",bat,x,panjang);
+		lcd_xy(0,0);
+		lcd_write(lcd_buff);
+		sprintf(lcd_buff,"x=%.2f  y=%.2f  ",odo_x,odo_y);
+		lcd_xy(0,1);
+		lcd_write(lcd_buff);
+	}
+	//end of percobaan PA1	
+		
+		
+	//parsing 2 data
+		
+	if(USART_ReceiveData(USART6)=='#' || USART_ReceiveData(USART6)=='$')
+	{
+		n=0;
+		k=4;
+		data_parse=0;
+
+		if(USART_ReceiveData(USART6)=='#')rx6_parse=1;
+		else rx6_parse=2;
+
+		//USART_SendString(USART6,"ready\n");
+	}
+
+	if(rx6_parse)
+	{
+		if((USART_ReceiveData(USART6)>=0x30 && USART_ReceiveData(USART6)<=0x39) || USART_ReceiveData(USART6)==' ' || USART_ReceiveData(USART6)=='-')
+		{
+			if(USART_ReceiveData(USART6)=='-')
+			{
+				val2=0;
+				sign=1;
+				//USART_SendString(USART6,"sign");
+			}
+			else val2=USART_ReceiveData(USART6) & 0x0F;
+			//val=(r_buff6[n]);
+			//sprintf(char_buff," v1=%d v2=%d k=%d \n",val,val2,k);
+			//USART_SendString(USART6,char_buff);
+
+			data_parse+= val2 * pow(10,k);
+			k--;
+
+			//sprintf(char_buff," data=%d \n",data_parse);
+			//USART_SendString(USART6,char_buff);
+			//n++;
+		}
+
+		else if(USART_ReceiveData(USART6)!='#' && USART_ReceiveData(USART6)!='$' && USART_ReceiveData(USART6)!='&')
+		{
+			n=0;
+			rx6_parse=0;
+			USART_SendString(USART6,"no parse");
+		}
+
+		if(USART_ReceiveData(USART6)=='&'&& rx6_parse==1)
+		{
+			n=0;
+			rx6_parse=0;
+			data_x=data_parse/100.0;
+			if(sign==1)data_x*=-1;
+			sign=0;
+			//sprintf(char_buff," \nvalue_x=%.2f \n",data_x);
+			//USART_SendString(USART6,char_buff);
+			//BT_Send(char_buff);
+		}
+
+		else if(USART_ReceiveData(USART6)=='&' && rx6_parse==2)
+		{
+			n=0;
+			rx6_parse=0;
+			data_y=data_parse/100.0;
+			if(sign==1)data_y*=-1;
+			sign=0;
+			//sprintf(char_buff," \nvalue_y=%.2f \n",data_y);
+			//USART_SendString(USART6,char_buff);
+			//BT_Send(char_buff);
+
+			sprintf(char_buff,"x=%.2f , y=%.2f\n",data_x,data_y);
+			USART_SendString(USART6,char_buff);
+			BT_Send(char_buff);
+			sprintf(lcd_buff,"%.2f , %.2f ",data_x,data_y);
+			lcd_xy(0,1);
+			lcd_write(lcd_buff);
+		}
+	}
+	//end of parsing 2 data
+		
+		
+		if(tmp1<tmp2)
+		{
+			tmp2+=180;
+			if(tmp2>359)tmp2-=360;
+
+			if(tmp2<=tmp1)
+			{
+				*dir=dir_minx;
+				*new_head+=90;
+				if(*new_head>359)*new_head-=360;
+			}
+			else *dir=dir_y;
+		}
+
+		else
+		{
+			tmp1+=180;
+			if(tmp1>359)tmp1-=360;
+
+			if(tmp1<=tmp2)*dir=dir_miny;
+			else
+			{
+				*dir=dir_x;
+				*new_head-=90;
+				if(*new_head<0)*new_head+=360;
+			}
+
+		}
+		
+		
+		//custom char
+			/*uint8_t customChar[] = {
+			0x00,	 //	xxx	00000
+	        0x04,    // xxx 00100
+	        0x0e,    // xxx 01110
+	        0x1f,    // xxx 11111
+	        0x0e,    // xxx 01110
+	        0x0e,    // xxx 01110
+	        0x0e,    // xxx 01110
+	        0x00     // xxx 00000
+	    };
+	//Save custom character on location 0 in LCD
+	TM_HD44780_CreateChar(0, &customChar[0]);
+
+	customChar[0] =0x04;    // xxx 00100
+	customChar[1] =0x0e;    // xxx 01110
+	customChar[2] =0x1f;    // xxx 11111
+	customChar[3] =0x1f;    // xxx 11111
+	customChar[4] =0x0e;    // xxx 01110
+	customChar[5] =0x04;    // xxx 00100
+	customChar[6] =0x0e;    // xxx 01110
+	customChar[7] =0x00;    // xxx 00000
+	TM_HD44780_CreateChar(1, &customChar[0]);
+
+	customChar[0] =0x00;    // xxx 00000
+	customChar[1] =0x00;    // xxx 00000
+	customChar[2] =0x0a;    // xxx 01010
+	customChar[3] =0x1f;    // xxx 11111
+	customChar[4] =0x1f;    // xxx 11111
+	customChar[5] =0x0e;    // xxx 01110
+	customChar[6] =0x04;    // xxx 00100
+	customChar[7] =0x00;    // xxx 00000
+	TM_HD44780_CreateChar(2, &customChar[0]);
+
+	//Show custom character at x = 1, y = 2 from RAM location 0
+	TM_HD44780_PutCustom(1, 1, 0);
+	TM_HD44780_PutCustom(2, 1, 1);
+	TM_HD44780_PutCustom(3, 1, 2);*/
+	
+	//end of custom char
+		
+		
+		//untuk robi
+    	/*if(GPIO_ReadInputDataBit(GPIOB,GPIO_PIN_12)==0)
+    	{
+			while(GPIO_ReadInputDataBit(GPIOB,GPIO_PIN_12)==0)
+			{
+				flag_stamp=1;
+				led0_on;
+			}
+			flag_stamp=0;
+			sprintf(string_buff,"%6dus\n",stamp);
+			USART_SendString(USART3,string_buff);
+    	}*/
+
+    	//lcd_xy(0,1);
+    	//lcd_write("nire ama :)");
+    	//GPIO_Write(GPIOD,GPIO_ReadInputData(GPIOC));
+
+    	//rotate(500);	delay_ms(2000);
+    	//rotate(0);		delay_ms(1000);
+    	//rotate(-500);	delay_ms(2000);
+    	//rotate(0);		delay_ms(1000);
+
+    	//move(dir_y,500,500);delay_ms(2000);
+    	//move(dir_y,0);delay_ms(1000);
+    	//move(dir_y,-500);delay_ms(2000);
+    	//move(dir_y,0);delay_ms(1000);
+    	//move(dir_x,500);delay_ms(2000);
+    	//move(dir_x,0);delay_ms(1000);
+    	//move(dir_x,-500);delay_ms(2000);
+    	//move(dir_x,0);delay_ms(1000);
+    	
+    	//end of untuk robi

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="4.8.4 -mcpu=cortex-m4 -mthumb -g -nostartfiles -Map=f4.map -O0 --gc-sections -LD:\CooCox\CoIDE\configuration\ProgramData\f4 -TD:\CooCox\CoIDE\configuration\ProgramData\f4/arm-gcc-link.ld -g">
+      <target file="f4.elf" lastModified="14e78d903b6">
+         <source file="..\obj\startup_stm32f4xx.o" lastModified="14e78d8ef95"/>
+         <source file="..\obj\main.o" lastModified="14e78d8f1bb"/>
+         <source file="..\obj\stm32f4xx_rcc.o" lastModified="14e78d8f542"/>
+         <source file="..\obj\system_stm32f4xx.o" lastModified="14e78d8f790"/>
+         <source file="..\obj\stm32f4xx_spi.o" lastModified="14e78d8f948"/>
+         <source file="..\obj\stm32f4xx_i2c.o" lastModified="14e78d8fc15"/>
+      </target>
+   </processor>
+</history>
